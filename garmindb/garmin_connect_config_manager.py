@@ -31,10 +31,11 @@ class GarminConnectConfigManager(JsonConfig):
     temp_dir = tempfile.mkdtemp()
     homedir = str(Path(__file__).resolve().parent.parent.parent)
 
-    def __init__(self):
+    def __init__(self, user_table):
         """Return a new GarminConnectConfigManager instance."""
         self.enabled_statistics = None
         self.user_info_db_file = self.get_user_info_db_file()
+        self.user_table = user_table
         config_file = self.get_config_file()
         try:
             super().__init__(config_file)
